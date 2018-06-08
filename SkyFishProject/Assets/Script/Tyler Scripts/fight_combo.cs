@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class fight_combo : MonoBehaviour
 {
-
+    private Manager GM;
     // author: Kamil104
     // http://answers.unity3d.com/users/225838/kamil1064.html
     public Image[] images; // imgaes to show which buton you need to press
@@ -15,7 +15,10 @@ public class fight_combo : MonoBehaviour
     private int comboLength; // how many times you need to press correct key
     private int currentCombo = 0;
     public int damage;
-    public Text damageText;
+    public GameObject Enemy;
+
+
+    private void Awake()     {         GM = Manager.GM;     }
 
 
     void Start()
@@ -26,7 +29,6 @@ public class fight_combo : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        damageText.text = "Damage = " + damage;
 
         if (Time.time > sorryTimer)
         {
@@ -41,23 +43,27 @@ public class fight_combo : MonoBehaviour
             }
             else
             {
-                damage = damage - 2;
-                print("wrong key was pressed: reduced damage = 2;");
+                //damage = damage - 2;
+                //print("wrong key was pressed: reduced damage = 2;");
                 //gameObject.SetActive(false);
             }
         }
+
 
         images[current].fillAmount = (sorryTimer - Time.time) / timer;
     }
     public void SetTimer(bool fastEnough)
     {
+
         if (currentCombo >= comboLength)
         {
             images[current].fillAmount = 0;
-           // print("you won :)");
-            print(damage);
+            // print("you won :)");
+            print(GM.PlayerDamage);
             // do some stuff here
             gameObject.SetActive(false);
+            GM.EnemyHealth -= GM.PlayerDamage;
+            Enemy.SetActive(true);
         }
         else
         {
@@ -67,12 +73,13 @@ public class fight_combo : MonoBehaviour
             if (!fastEnough)
             {
                 print("failed to press key: reduced damage = 2");
-                damage = damage - 2;
                 // and do die stuff here
-               
             }
             else
+            {
                 print("Nice");
+                GM.PlayerDamage += 2;
+            }
             currentCombo++;
         }
     }
