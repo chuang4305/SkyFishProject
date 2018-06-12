@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -88,6 +88,22 @@ public class FishDirectionScript : GenericSingletonClass<FishDirectionScript>
     {
         Debug.Log("Pick Direction");
         fishDir = Random.Range(1,8);
+        CheckCHit();
         FishingScript.Instance.canPress = true;
+
+    }
+
+    void CheckCHit()
+    {
+        if (FishingScript.Instance.noHit == false)
+        {
+            FishingScript.Instance.fishMeter += 1;
+        }
+        else
+        {
+            FishingScript.Instance.fishMeter -= 1;
+        }
+
+        FishingScript.Instance.noHit = true;
     }
 }

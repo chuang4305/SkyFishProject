@@ -1,6 +1,8 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : GenericSingletonClass<GameManagerScript>
 {
@@ -15,5 +17,10 @@ public class GameManagerScript : GenericSingletonClass<GameManagerScript>
 	// Update is called once per frame
 	void Update () {
 		
+        if (Gamestat == "BattleStat")
+        {
+            FishingPanel.SetActive(false);
+            SceneManager.LoadScene("Tyler_Scene");
+        }
 	}
 }

@@ -5,7 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/ChunTseTestScene.unity
+    guid: 828e51a888cce604ca2ae485d1cd4864
+  - enabled: 1
+    path: Assets/Scenes/Tyler_Scene.unity
+    guid: f4273eb558676485981769d8d7c2c94f
   m_configObjects: {}
